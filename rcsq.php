@@ -8,7 +8,7 @@ require_once 'rcsq.civix.php';
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_config
  */
 function rcsq_civicrm_config(&$config) {
-  _rcsq_civix_civicrm_config($config);
+    _rcsq_civix_civicrm_config($config);
 }
 
 /**
@@ -19,7 +19,7 @@ function rcsq_civicrm_config(&$config) {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_xmlMenu
  */
 function rcsq_civicrm_xmlMenu(&$files) {
-  _rcsq_civix_civicrm_xmlMenu($files);
+    _rcsq_civix_civicrm_xmlMenu($files);
 }
 
 /**
@@ -28,7 +28,7 @@ function rcsq_civicrm_xmlMenu(&$files) {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_install
  */
 function rcsq_civicrm_install() {
-  _rcsq_civix_civicrm_install();
+    _rcsq_civix_civicrm_install();
 }
 
 /**
@@ -37,7 +37,7 @@ function rcsq_civicrm_install() {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_uninstall
  */
 function rcsq_civicrm_uninstall() {
-  _rcsq_civix_civicrm_uninstall();
+    _rcsq_civix_civicrm_uninstall();
 }
 
 /**
@@ -46,7 +46,7 @@ function rcsq_civicrm_uninstall() {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_enable
  */
 function rcsq_civicrm_enable() {
-  _rcsq_civix_civicrm_enable();
+    _rcsq_civix_civicrm_enable();
 }
 
 /**
@@ -55,7 +55,7 @@ function rcsq_civicrm_enable() {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_disable
  */
 function rcsq_civicrm_disable() {
-  _rcsq_civix_civicrm_disable();
+    _rcsq_civix_civicrm_disable();
 }
 
 /**
@@ -71,7 +71,7 @@ function rcsq_civicrm_disable() {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_upgrade
  */
 function rcsq_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  return _rcsq_civix_civicrm_upgrade($op, $queue);
+    return _rcsq_civix_civicrm_upgrade($op, $queue);
 }
 
 /**
@@ -83,7 +83,7 @@ function rcsq_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_managed
  */
 function rcsq_civicrm_managed(&$entities) {
-  _rcsq_civix_civicrm_managed($entities);
+    _rcsq_civix_civicrm_managed($entities);
 }
 
 /**
@@ -96,7 +96,7 @@ function rcsq_civicrm_managed(&$entities) {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_caseTypes
  */
 function rcsq_civicrm_caseTypes(&$caseTypes) {
-  _rcsq_civix_civicrm_caseTypes($caseTypes);
+    _rcsq_civix_civicrm_caseTypes($caseTypes);
 }
 
 /**
@@ -110,7 +110,7 @@ function rcsq_civicrm_caseTypes(&$caseTypes) {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_caseTypes
  */
 function rcsq_civicrm_angularModules(&$angularModules) {
-_rcsq_civix_civicrm_angularModules($angularModules);
+    _rcsq_civix_civicrm_angularModules($angularModules);
 }
 
 /**
@@ -119,20 +119,20 @@ _rcsq_civix_civicrm_angularModules($angularModules);
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_alterSettingsFolders
  */
 function rcsq_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
-  _rcsq_civix_civicrm_alterSettingsFolders($metaDataFolders);
+    _rcsq_civix_civicrm_alterSettingsFolders($metaDataFolders);
 }
 
 /**
  * Functions below this ship commented out. Uncomment as required.
  *
 
-/**
+  /**
  * Implements hook_civicrm_preProcess().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_preProcess
  *
-function rcsq_civicrm_preProcess($formName, &$form) {
+  function rcsq_civicrm_preProcess($formName, &$form) {
 
-}
+  }
 
-*/
+ */
