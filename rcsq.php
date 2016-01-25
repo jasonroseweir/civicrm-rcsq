@@ -1,6 +1,9 @@
 <?php
 
 require_once 'rcsq.civix.php';
+require_once 'lib/JustGivingAPI/JustGivingClient.php';
+
+$CHARITY_CONTACT_SUBTYPE = 'Charity';
 
 /**
  * Implements hook_civicrm_config().
@@ -136,3 +139,20 @@ function rcsq_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
   }
 
  */
+
+/**
+ * 
+ * @param type $op
+ * @param type $objectName
+ * @param type $objectId
+ * @param type $objectRef
+ */
+function rcsq_civicrm_post($op, $objectName, $objectId, &$objectRef) {
+    global $CHARITY_CONTACT_SUBTYPE;
+
+    if (($op == 'create' || $op == 'edit') &&
+            $objectName == 'Organization' &&
+            strcmp($CHARITY_CONTACT_SUBTYPE, $objectRef->contact_sub_type)) {
+        //Org is a Charity - Do Stuff!!
+    }
+}
