@@ -139,8 +139,7 @@ function rcsq_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
   }
 
  */
-
-/**
+/* * a
  * 
  * @param type $op
  * @param type $objectName
@@ -150,30 +149,45 @@ function rcsq_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
 function rcsq_civicrm_post($op, $objectName, $objectId, &$objectRef) {
     global $CHARITY_CONTACT_SUBTYPE;
 
+    //FIXME: Refactor Charity Create/Edit check into it's own function
     if (($op == 'create' || $op == 'edit') &&
             $objectName == 'Organization' &&
             strcmp($CHARITY_CONTACT_SUBTYPE, $objectRef->contact_sub_type)) {
-        //Org is a Charity - Do Stuff!!
-        $custom_fieldnames = rcsq_util_getCharityCustomFieldNames();
-        $get_params = array('entityID' => $objectRef['contact_id'],
-        $custom_fields['Charity_Number'] => 1, $custom_fields['JG_Charity_ID'] => 1,  $custom_fields['JG_Charity_URL'] => 1);
-        require_once 'CRM/Core/BAO/CustomValueTable.php';
-        $values = CRM_Core_BAO_CustomValueTable::getValues($get_params);
-        $my_charityNumber = $values[$custom_fields['Charity_Number']];
-        $my_charityJGID = $values[$custom_fields['JG_Charity_ID']];
-        $my_charityJGURL = $values[$custom_fields['JG_Charity_URL']];
+        //Org is a Charity - Do Stuff!!   
+        $custom_fieldvalues = rcsq_util_getCharityCustomFieldValues($objectRef->id);
     }
 }
 
 function rcsq_util_getCharityCustomFieldNames() {
     require_once 'CRM/Core/BAO/CustomField.php';
-    $customFieldID_charityNumber = CRM_Core_BAO_CustomField::getCustomFieldID( 'Charity Number', 'Charity Info' );
-    $customFieldID_JG_charityId = CRM_Core_BAO_CustomField::getCustomFieldID( 'JG Charity ID', 'Charity Info' );
-    $customFieldID_JG_charityUrl = CRM_Core_BAO_CustomField::getCustomFieldID( 'JG Charity URL', 'Charity Info' );
-    
+    $customFieldID_charityNumber = CRM_Core_BAO_CustomField::getCustomFieldID('Charity Number', 'Charity Info');
+    $customFieldID_JG_charityId = CRM_Core_BAO_CustomField::getCustomFieldID('JG Charity ID', 'Charity Info');
+    $customFieldID_JG_charityUrl = CRM_Core_BAO_CustomField::getCustomFieldID('JG Charity URL', 'Charity Info');
+
     return $custom_fields = [
         "Charity_Number" => "custom_" . $customFieldID_charityNumber,
         "JG_Charity_ID" => "custom_" . $customFieldID_JG_charityId,
         "JG_Charity_URL" => "custom_" . $customFieldID_JG_charityUrl,
-        ]
+    ];
+}
+
+function rcsq_util_getCharityCustomFieldValues($entity_id) {
+    $custom_fieldnames = rcsq_util_getCharityCustomFieldNames();
+    
+    $get_params = array('entityID' => intval($entity_id),
+        $custom_fieldnames['Charity_Number'] => 1, 
+        $custom_fieldnames['JG_Charity_ID'] => 1, 
+        $custom_fieldnames['JG_Charity_URL'] => 1);
+    
+    require_once 'CRM/Core/BAO/CustomValueTable.php';
+    $values = CRM_Core_BAO_CustomValueTable::getValues($get_params);
+    $my_charityNumber = $values[$custom_fieldnames['Charity_Number']];
+    $my_charityJGID = $values[$custom_fieldnames['JG_Charity_ID']];
+    $my_charityJGURL = $values[$custom_fieldnames['JG_Charity_URL']];
+    
+    return $custom_fieldvalues = [
+        "Charity_Number" => $my_charityNumber,
+        "JG_Charity_ID" => $my_charityJGID,
+        "JG_Charity_URL" => $my_charityJGURL,
+    ];
 }
